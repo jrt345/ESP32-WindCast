@@ -1,8 +1,14 @@
 #include "apiwifikeys.h" //API keys and wifi credentials
 
 #include <WiFi.h> // Built-in library for ESP32 Wi-Fi
+#include <LiquidCrystal.h>
+
+LiquidCrystal lcd(19, 23, 18, 17, 16, 15);
 
 void setup() {
+  lcd.begin(16, 2);
+  lcd.print("WindCast:");
+  
   // Start the serial monitor for debugging
   Serial.begin(115200);
   delay(1000);
@@ -23,4 +29,7 @@ void setup() {
   Serial.println(WiFi.localIP());
 }
 
-void loop() {}
+void loop() {
+  lcd.setCursor(0, 1);
+  lcd.print(millis() / 1000);
+}
